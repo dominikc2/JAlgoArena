@@ -1,0 +1,43 @@
+version: '3'
+services:
+  eureka:
+    image: jalgoarena-eureka
+    environment:
+      - PORT=80
+    ports:
+      - "5000:80"
+  api:
+    image: jalgoarena-api
+    environment:
+      - EUREKA_URL=http://eureka/eureka/
+      - PORT=5001
+    ports:
+      - "5001:5001"
+  problems:
+    image: jalgoarena-problems
+    environment:
+      - EUREKA_URL=http://eureka/eureka/
+      - PORT=5002
+    ports:
+      - "5002:5002"
+  submissions:
+    image: jalgoarena-submissions
+    environment:
+      - EUREKA_URL=http://eureka/eureka/
+      - PORT=5003
+    ports:
+      - "5003:5003"
+  judge:
+    image: jalgoarena-judge
+    environment:
+      - EUREKA_URL=http://eureka/eureka/
+      - PORT=8080
+    ports:
+      - "8080:8080"
+  auth:
+    image: jalgoarena-auth
+    environment:
+      - EUREKA_URL=http://eureka/eureka/
+      - PORT=9999
+    ports:
+      - "9999:9999"
